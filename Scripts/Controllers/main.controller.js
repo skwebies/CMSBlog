@@ -6,8 +6,18 @@ angular.module("mainModule")
         "$scope",
         "$location",
         "$route",
-        function($scope,  $location, $route) {
+        "postsApi",
+        function($scope,  $location, $route, postsApi) {
             $scope.$route = $route;
+
+            $scope.posts = [];
+
+            $scope.subscribedAuthors = [];
+
+            postsApi.getPosts()
+                .then(function (data) {
+                    $scope.posts = data;
+                });
 
 
             $scope.go = function(url) {
