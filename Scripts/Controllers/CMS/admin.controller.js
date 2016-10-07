@@ -8,12 +8,12 @@ angular.module("mainModule")
             $scope.title = "Administration";
 
             $scope.newPost = {};
-
+            
             $scope.addPost = function () {
                 postsApi.addPost($scope.newPost)
                     .then(function (data) {
-                        if (data != nul)
-                            $scope.posts.push(data);
+                        if (data != null)
+                            $scope.data.posts.push(data);
                         $scope.newPost = {};
                     });
             };
@@ -22,13 +22,13 @@ angular.module("mainModule")
                 postsApi.deletePost(post.id)
                     .then(function () {
 
-                        var index = $scope.posts.map(function (post) {
+                        var index = $scope.data.posts.map(function (post) {
 
                             return post.id;
 
                         }).indexOf(post.id);
 
-                        $scope.posts.splice(index, 1);
+                        $scope.data.posts.splice(index, 1);
                     });
             };
         }

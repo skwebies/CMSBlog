@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-md-3">
         <div class="form-group">
-            <input class="form-control" ng-model="search" id="search" type="text" placeholder="Search" />
+            <input class="form-control" ng-model="searchKey" id="search" type="text" placeholder="Search" />
 
         </div>
     </div>
@@ -11,19 +11,26 @@
 <div class="row">
     
 
-    <div class="col-md-3" ng-repeat="post in posts | filter: {author: search} track by $index">
+    <div class="col-md-3" ng-repeat="post in data.posts | filter: searchKey track by $index">
         <h2 class="text-primary" ng-bind="post.title"></h2>
         <h5>
             <span ng-bind="post.author" class="text-muted">
 
             </span>
-            <span ng-bind="post.postDate" class="text-muted">
+            <span ng-bind="post.postDate | date:'medium'" class="text-muted">
 
             </span>
         </h5>
         <p ng-bind="post.body"></p>
-        <button class="btn btn-success" ng-click="upVote(post)"><i class="glyphicon glyphicon-thumbs-up"></i> <span ng-bind="post.upvotes"> </span></button>
-        <button class="btn btn-danger" ng-click="downVote(post)"><i class="glyphicon glyphicon-thumbs-down"></i> <span ng-bind="post.downvotes"> </span></button>
+
+        <upvote-button></upvote-button>
+        <downvote-button></downvote-button>
+        <button class="btn btn-success" ng-click="subscribe(post.author)" ng-show="data.subscribedAuthors.indexOf(post.author) == -1"><span class="glyphicon glyphicon-eye-open"></span> Subscribe</button>
+
+        <span ng-show="data.subscribedAuthors.indexOf(post.author) != -1">
+            <span class="glyphicon glyphicon-ok"></span> Subscribed
+        </span>
+        
     </div>
 
 </div>

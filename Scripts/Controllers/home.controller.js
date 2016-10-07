@@ -11,11 +11,14 @@ angular.module("mainModule")
 
             //subscribing post by author
             $scope.subscribe = function (author) {
-                $scope.subscribedAuthors.push(author);
+                $scope.data.subscribedAuthors.push(author);
+                
+                $scope.saveSubscriptions();
             };
+  
 
             //finding the specific post by id
-            $scope.post = $scope.posts.filter(function (post) {
+            $scope.post = $scope.data.posts.filter(function (post) {
                 return post.id == $routeParams.id;
                 
             })[0];
@@ -26,11 +29,13 @@ angular.module("mainModule")
                postsApi.updateVotePost(post);
             };
 
-            //downvoting the post
+            //down voting the post
             $scope.downVote = function (post) {
                 post.downvotes++;
-                postsApi.updateVotePost(post);
+                postsApi.updateDownVotePost(post);
             };
+
+            
             
         }
     ]);

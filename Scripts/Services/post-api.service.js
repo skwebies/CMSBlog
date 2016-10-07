@@ -13,11 +13,12 @@ angular.module("mainModule")
             //GET Posts
             this.getPosts = function () {
                 var deferred = $q.defer();
-
+                var vm = this;
                 $http.get(posts)
                     .then(function (response) {
+                        this.posts = response.data;
                         deferred.resolve(response.data);
-
+                        
                     }, function () {
 
                         deferred.resolve([]);
@@ -79,6 +80,25 @@ angular.module("mainModule")
 
             };
 
+
+            // Update downvotes for Post
+            this.updateDownVotePost = function (updateVotePost) {
+
+                var deferred = $q.defer();
+
+                $http.put(downvotes + '/' + updateVotePost.id, updateVotePost)
+                    .then(function (response) {
+                        deferred.resolve(response.data);
+                    }, function () {
+                        deferred.resolve([]);
+
+                    });
+
+                return deferred.promise;
+
+
+            };
+
             // Delete Post
             this.deletePost = function (id) {
 
@@ -94,23 +114,6 @@ angular.module("mainModule")
                 return deferred.promise;
             };
 
-            ////Upvote
-            //this.upVotePost = function (upvotes) {
-            //    var deferred = $q.defer();
-
-            //    $http.put(posts + '/' + post.id, upvotes)
-            //        .then(function (response) {
-            //            deferred.resolve(response.data);
-
-            //        }, function () {
-
-            //            deferred.resolve([]);
-
-            //        });
-            //     return deferred.promise;
-
-
-            //}
-
+            
         }
     ]);

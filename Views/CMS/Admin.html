@@ -33,11 +33,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="post in posts track by $index">
+                <tr ng-repeat="post in data.posts track by $index">
                     <td ng-bind="post.title" class="col-md-2 text-primary"></td>
                     <td ng-bind="post.author" class="col-md-2"></td>
                     <td ng-bind="post.body | limitTo:60" class="col-md-2"></td>
-                    <td ng-bind="post.postDate" class="col-md-2"></td>
+                    <td ng-bind="post.postDate | date:'medium'" class="col-md-2"></td>
                     <td>
                         <button class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-pencil" ng-click="editPost()"></i></button>
                         <button class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash" ng-click="deletePost(post)"></i></button>
