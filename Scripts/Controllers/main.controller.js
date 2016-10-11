@@ -13,18 +13,9 @@ angular.module("mainModule")
             $scope.data = {
                 posts: [],
                 subscribedAuthors: [],
-                feed:[]
+                tamil: []
             };
 
-            
-            //Geting the subscribed feeds
-            $scope.getFeed = function () {
-                $scope.data.feed = $scope.data.posts.filter(function (post) {
-                    return $scope.data.subscribedAuthors.indexOf(post.author) != -1;
-
-                });
-
-            };
 
             //initial posts loaded
             postsApi.getPosts()
@@ -33,12 +24,21 @@ angular.module("mainModule")
                         $scope.data.posts = data;
                         $scope.getFeed();
                     }
-                    
-                    
+                });
+
+            //Geting the subscribed feeds
+            $scope.getFeed = function () {
+                angular.forEach($scope.data.posts, function (post) {
+                    if ($scope.data.subscribedAuthors.indexOf(post.author) != -1)
+                        post.subscribed = true;
+                    else
+                        post.subscribed = false;
+
                 });
 
 
-            
+            };
+
 
             //loading subscribed authors
             $scope.loadSubscriptions = function () {
@@ -56,10 +56,10 @@ angular.module("mainModule")
 
             };
 
-            
+
 
             $scope.loadSubscriptions();
-            
+            $scope.getFeed();
 
             $scope.go = function(url) {
                 $location.path(url);

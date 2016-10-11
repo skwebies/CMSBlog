@@ -26,20 +26,20 @@
         <table class="table table-responsive table-striped">
             <thead>
                 <tr>
-                    <th>Post Title</th>
-                    <th>Author</th>
+                    <th><a href="" ng-click="type='title'">Post Title <i class="glyphicon glyphicon-sort-by-alphabet"></i></a></th>
+                    <th><a href="" ng-click="type='author'">Author <i class="glyphicon glyphicon-sort-by-alphabet"></i></a></th>
                     <th>Content</th>
-                    <th>Date</th>
+                    <th><a href="" ng-click="type='postDate'">Date <i class="glyphicon glyphicon-sort-by-order"></i></a></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="post in data.posts track by $index">
+                <tr ng-repeat="post in data.posts | orderBy: type:false track by $index">
                     <td ng-bind="post.title" class="col-md-2 text-primary"></td>
                     <td ng-bind="post.author" class="col-md-2"></td>
                     <td ng-bind="post.body | limitTo:60" class="col-md-2"></td>
                     <td ng-bind="post.postDate | date:'medium'" class="col-md-2"></td>
                     <td>
-                        <button class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-pencil" ng-click="editPost()"></i></button>
+                        <button class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-pencil" ng-click="go('/Admin/Posts/Edit' + post.id)"></i></button>
                         <button class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash" ng-click="deletePost(post)"></i></button>
                     </td>
 

@@ -17,7 +17,7 @@ angular.module("mainModule")
                     activeTab: 'Home'
 
                 })
-                
+
                 .when("/Subscriptions", {
                     templateUrl: "Views/SubscribedAuthors.html",
                     controller: "SubscriptionsController",
@@ -29,6 +29,14 @@ angular.module("mainModule")
             .when("/Admin", {
                 templateUrl: "Views/CMS/Admin.html",
                 controller: "AdminController",
+                caseInsensitiveMatch: true,
+                activeTab: 'Admin'
+
+
+            })
+                .when("/Admin/Posts/Edit", {
+                templateUrl: "Views/CMS/Posts/EditPost.html",
+                controller: "EditPostController",
                 caseInsensitiveMatch: true,
                 activeTab: 'Admin'
 

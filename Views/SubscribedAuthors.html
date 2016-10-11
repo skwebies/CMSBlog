@@ -3,7 +3,7 @@
 </div>
 
 <div class="col-md-12"
-     ng-repeat="post in data.feed track by $index">
+     ng-repeat="post in data.posts | filter:{subscribed: true} track by $index">
     <h3 ng-bind="post.title"></h3>
     <h6>
         <span ng-bind="post.author"></span>

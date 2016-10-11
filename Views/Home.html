@@ -1,36 +1,41 @@
 ﻿<h1 ng-bind="title"></h1>
 
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 col-md-offset-4">
         <div class="form-group">
-            <input class="form-control" ng-model="searchKey" id="search" type="text" placeholder="Search" />
+            <input class="form-control" ng-model="search.$" id="search" type="text" placeholder="Search" />
 
         </div>
     </div>
 </div>
-<div class="row">
-    
+<div class="col-md-12">
 
-    <div class="col-md-3" ng-repeat="post in data.posts | filter: searchKey track by $index">
-        <h2 class="text-primary" ng-bind="post.title"></h2>
-        <h5>
-            <span ng-bind="post.author" class="text-muted">
+    <div class="col-md-4"  ng-repeat="post in data.posts | filter:search track by $index">
 
-            </span>
-            <span ng-bind="post.postDate | date:'medium'" class="text-muted">
+        <div class="col-md-12">
+            <h2 class="text-primary" ng-bind="post.title"></h2>
+            <h5>
+                <span ng-bind="post.author" class="text-muted">
 
-            </span>
-        </h5>
-        <p ng-bind="post.body"></p>
+                </span>
+                <span ng-bind="post.postDate | date:'yyyy-MM-dd hh:mm:ss'" class="text-muted">
 
-        <upvote-button></upvote-button>
-        <downvote-button></downvote-button>
-        <button class="btn btn-success" ng-click="subscribe(post.author)" ng-show="data.subscribedAuthors.indexOf(post.author) == -1"><span class="glyphicon glyphicon-eye-open"></span> Subscribe</button>
+                </span>
+            </h5>
+            <p ng-bind="post.body"></p>
 
-        <span ng-show="data.subscribedAuthors.indexOf(post.author) != -1">
+            <upvote-button></upvote-button>
+            <downvote-button></downvote-button>
+
+            <subscribe-button ng-model="post.subscribed" ng-click="subscribe(post.author)"></subscribe-button>
+            <!--<button class="btn btn-success" ng-click="subscribe(post.author)" ng-show="data.subscribedAuthors.indexOf(post.author) == -1"><span class="glyphicon glyphicon-eye-open"></span> Subscribe</button>-->
+
+        <!--<span ng-show="data.subscribedAuthors.indexOf(post.author) != -1">
             <span class="glyphicon glyphicon-ok"></span> Subscribed
-        </span>
-        
+        </span>-->
+        </div>
+
     </div>
 
 </div>
+

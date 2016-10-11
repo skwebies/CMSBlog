@@ -11,17 +11,25 @@ angular.module("mainModule")
 
             //subscribing post by author
             $scope.subscribe = function (author) {
-                $scope.data.subscribedAuthors.push(author);
-                
+                if ($scope.data.subscribedAuthors.indexOf(author) == -1) {
+                     $scope.data.subscribedAuthors.push(author);
+                }
+
+
                 $scope.saveSubscriptions();
+                $scope.getFeed();
             };
-  
+
 
             //finding the specific post by id
-            $scope.post = $scope.data.posts.filter(function (post) {
-                return post.id == $routeParams.id;
-                
-            })[0];
+            $scope.$watch("data.posts", function (posts) {
+
+
+                $scope.post = $scope.data.posts.filter(function (post) {
+                    return post.id == $routeParams.id;
+
+                })[0];
+            });
 
             //up voting the post
             $scope.upVote = function (post) {
@@ -35,7 +43,7 @@ angular.module("mainModule")
                 postsApi.updateDownVotePost(post);
             };
 
-            
-            
+
+
         }
     ]);
