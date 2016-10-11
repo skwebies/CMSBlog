@@ -39,7 +39,7 @@
                     <td ng-bind="post.body | limitTo:60" class="col-md-2"></td>
                     <td ng-bind="post.postDate | date:'medium'" class="col-md-2"></td>
                     <td>
-                        <button class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-pencil" ng-click="go('/Admin/Posts/Edit' + post.id)"></i></button>
+                        <button class="btn btn-sm btn-primary" ng-click="go('/Admin/Posts/Edit/' + post.id)"><i class="glyphicon glyphicon-pencil"></i></button>
                         <button class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash" ng-click="deletePost(post)"></i></button>
                     </td>
 

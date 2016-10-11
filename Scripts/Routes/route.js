@@ -34,7 +34,7 @@ angular.module("mainModule")
 
 
             })
-                .when("/Admin/Posts/Edit", {
+                .when("/Admin/Posts/Edit/:id", {
                 templateUrl: "Views/CMS/Posts/EditPost.html",
                 controller: "EditPostController",
                 caseInsensitiveMatch: true,

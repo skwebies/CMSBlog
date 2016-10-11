@@ -8,7 +8,9 @@ angular.module("mainModule")
             $scope.title = "Administration";
 
             $scope.newPost = {};
-            
+
+
+
             $scope.addPost = function () {
                 postsApi.addPost($scope.newPost)
                     .then(function (data) {
